@@ -23,7 +23,7 @@ public class Student {
     @OneToMany
     private List<Distribute> list = new ArrayList<>();  //배포된 시험들
 
-    private void SetGroup(Group group){
+    public void setGroup(Group group){
         this.group=group;
         group.getList().add(this);
     }
