@@ -8,6 +8,13 @@ import javax.persistence.*;
 @Entity
 @Getter @Setter
 public class Word {
+    protected Word() {
+    }
+    public Word(String korean, String english) {
+        Korean = korean;
+        English = english;
+    }
+
     @Id @GeneratedValue
     @Column(name = "word_id")
     private Long id;
@@ -19,7 +26,8 @@ public class Word {
     @JoinColumn(name = "wordbook_id")
     private WordBook wordBook;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "test_id")
-    private Test test;
+    public void setWordBook(WordBook wordBook,String key) {
+        this.wordBook = wordBook;
+        wordBook.getMap().put(key,this);
+    }
 }

@@ -1,8 +1,6 @@
 package word.spring.domain;
-
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -25,5 +23,14 @@ public class Distribute { //배포
     @Column(name = "distribute_time")
     private LocalDateTime time;
 
-    
+    public void setTest(Test test) {
+        this.test = test;
+        test.getList().add(this);
+        test.setTeststatus((TestStatus.YET));
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+        student.getList().add(this);
+    }
 }

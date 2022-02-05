@@ -23,8 +23,8 @@ public class WordRepository{
         return em.find(Word.class, id);
     }
 
-    public List<Word> findByName(String name){
-        return em.createQuery("select t from Test t where t.name=:name")
+    public List findByName(String name){ //List<Word>아닌가
+        return em.createQuery("select w from Word w where w.Korean=:name")
                 .setParameter("name",name)
                 .getResultList();
     }

@@ -7,10 +7,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-import word.spring.domain.Group;
-import word.spring.domain.Student;
-import word.spring.repository.GroupRepository;
-import word.spring.repository.StudentRepository;
+import word.spring.domain.*;
+import word.spring.repository.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -19,6 +21,12 @@ public class StudentRepositoryTest {
     StudentRepository studentRepository;
     @Autowired
     GroupRepository groupRepository;
+    @Autowired
+    WordRepository wordRepository;
+    @Autowired
+    WordBookRepository wordBookRepository;
+    @Autowired
+    TestRepository testRepository;
 
 
     @Test
@@ -37,12 +45,30 @@ public class StudentRepositoryTest {
             studentRepository.save(student);
         }
     }
-//    @Test
-//    @Transactional
-//    @Rollback(false)
-//    public void 멤버생성() {
-//
-//    }
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void 단어생성() {
+        WordBook wordBook = new WordBook();
+        wordBook.setName("수능2000");
+        for (int i = 0; i < 100; i++) {
+            Word word = new Word("kor"+i,"eng"+i);
+            Long savedWord = wordRepository.save(word);
+            Word words = wordRepository.findById(savedWord);
+            wordBook.getMap().put(Integer.toString(i),words); //단어장에 셋팅완료
+        }
+        wordBookRepository.save(wordBook);  //단어장에 추가 완료
+    }
+
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void 테스트추가() {
+        word.spring.domain.Test test = new word.spring.domain.Test();
+        test.setName("시험1");
+        test.setTeststatus(TestStatus.YET);
+//        test.get;
+    }
 
 
 }

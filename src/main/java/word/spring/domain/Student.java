@@ -20,7 +20,7 @@ public class Student {
     @JoinColumn(name = "group_id")
     private Group group;
 
-    @OneToMany
+    @OneToMany(mappedBy = "student")
     private List<Distribute> list = new ArrayList<>();  //배포된 시험들
 
     public void setGroup(Group group){

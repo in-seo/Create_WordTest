@@ -16,30 +16,26 @@ public class Test {
     @Column(name = "test_id")
     private Long id;
 
-    @Column(name = "test_name")
     private String name;
 
-    @Column(name = "start_time")
     private LocalDateTime startTime;
-    @Column(name = "end_time")
     private LocalDateTime endTime;
 
-    @Column(name = "cut_line")
     private Long cutLine;
-    @Column(name = "li_mit")
+
+    @Column(name = "limit_num")
     private Long limit;
 
-    @Column(name = "test_time")
     private Long testTime;
 
-    @OneToMany(mappedBy = "test")
-    private List<Distribute> list = new ArrayList<>();
-
     @Enumerated(EnumType.STRING)
-    private Test_Status test_status;
+    private TestStatus teststatus;
 
     @OneToMany(mappedBy = "test")
-    private List<Word> wordList = new ArrayList<>();
+    private List<Distribute> list = new ArrayList<>(); //배포된 시험에 누가 포함된지 알 수 있음.
+
+    @OneToMany(mappedBy = "test")
+    private List<WordBook> wordBookList = new ArrayList<>();
 
 }
 
