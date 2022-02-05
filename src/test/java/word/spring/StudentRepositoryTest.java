@@ -51,6 +51,7 @@ public class StudentRepositoryTest {
     public void 단어생성() {
         WordBook wordBook = new WordBook();
         wordBook.setName("수능2000");
+        wordBook.getMap().get(1)
         for (int i = 0; i < 100; i++) {
             Word word = new Word("kor"+i,"eng"+i);
             Long savedWord = wordRepository.save(word);
@@ -58,16 +59,19 @@ public class StudentRepositoryTest {
             wordBook.getMap().put(Integer.toString(i),words); //단어장에 셋팅완료
         }
         wordBookRepository.save(wordBook);  //단어장에 추가 완료
+
+        //  테스트에 단어 내지는지 보기.
+        word.spring.domain.Test test = new word.spring.domain.Test();
+        test.setName("시험1");
+        test.setTeststatus(TestStatus.YET);
+        test.getWordBookList().add(wordBook);
     }
 
     @Test
     @Transactional
     @Rollback(false)
     public void 테스트추가() {
-        word.spring.domain.Test test = new word.spring.domain.Test();
-        test.setName("시험1");
-        test.setTeststatus(TestStatus.YET);
-//        test.get;
+
     }
 
 
