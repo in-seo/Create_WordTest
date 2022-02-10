@@ -10,9 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import word.spring.domain.*;
 import word.spring.repository.*;
 
-import java.util.HashMap;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import java.util.List;
-import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,6 +28,10 @@ public class StudentRepositoryTest {
     WordBookRepository wordBookRepository;
     @Autowired
     TestRepository testRepository;
+    @Autowired
+    DistributeRepository distributeRepository;
+    @PersistenceContext
+    EntityManager em;
 
 
     @Test
@@ -41,7 +46,7 @@ public class StudentRepositoryTest {
         for (int i = 0; i < 100; i++) {
             Student student = new Student();
             student.setName("학생:"+i);
-            student.setGroup(groupRepository.findById(((long) i)%10+1));
+            student.setGroup(groupRepository.findByName("그룹"+(i%10)).get(0));
             studentRepository.save(student);
         }
     }
@@ -51,26 +56,32 @@ public class StudentRepositoryTest {
     public void 단어생성() {
         WordBook wordBook = new WordBook();
         wordBook.setName("수능2000");
-        wordBook.getMap().get(1)
-        for (int i = 0; i < 100; i++) {
-            Word word = new Word("kor"+i,"eng"+i);
-            Long savedWord = wordRepository.save(word);
-            Word words = wordRepository.findById(savedWord);
-            wordBook.getMap().put(Integer.toString(i),words); //단어장에 셋팅완료
-        }
-        wordBookRepository.save(wordBook);  //단어장에 추가 완료
+            word.spring.domain.Test test = new word.spring.domain.Test();
+            test.setName("시험");test.setTeststatus(TestStatus.YET);
+            test.setLimit(10L); test.setCutLine(50L); //시험 대충 세팅
 
-        //  테스트에 단어 내지는지 보기.
-        word.spring.domain.Test test = new word.spring.domain.Test();
-        test.setName("시험1");
-        test.setTeststatus(TestStatus.YET);
-        test.getWordBookList().add(wordBook);
+        for (int i = 0; i < 100; i++) { //단어 대충 생성
+            Word word = new Word("kor"+i,"eng"+i);
+            word.setWordBook(wordBook,Integer.toString(i));
+            wordRepository.save(word);
+            test.getWordList().add(word);
+        }
+            Long save = testRepository.save(test);
+        wordBookRepository.save(wordBook);  //단어장에 추가 완료
+        for (int j = 0; j < test.getWordList().size(); j++) { //결과확인
+            System.out.print(testRepository.findById(save).getWordList().get(j).getKorean());
+            System.out.println(testRepository.findById(save).getWordList().get(j).getEnglish());
+        }
     }
 
     @Test
     @Transactional
     @Rollback(false)
-    public void 테스트추가() {
+    public void 학생_단어출제() {
+
+
+
+
 
     }
 

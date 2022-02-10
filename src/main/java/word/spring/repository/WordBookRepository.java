@@ -14,7 +14,7 @@ public class WordBookRepository{
     @PersistenceContext
     EntityManager em;
 
-    @Transactional  //들어가야되나?
+
     public Long save(WordBook wordBook) {
         em.persist(wordBook);
         return wordBook.getId();
@@ -24,7 +24,7 @@ public class WordBookRepository{
     }
 
     public List<WordBook> findByName(String name){
-        return em.createQuery("select b from WordBook b where b.name=:name")
+        return em.createQuery("select b from WordBook b where b.name=:name",WordBook.class)
                 .setParameter("name",name)
                 .getResultList();
     }

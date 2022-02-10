@@ -20,8 +20,8 @@ public class Student {
     @JoinColumn(name = "group_id")
     private Group group;
 
-    @OneToMany(mappedBy = "student")
-    private List<Distribute> list = new ArrayList<>();  //배포된 시험들
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Distribute> distributeList = new ArrayList<>();  //배포된 시험들
 
     public void setGroup(Group group){
         this.group=group;

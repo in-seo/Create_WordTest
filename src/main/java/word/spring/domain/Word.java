@@ -2,7 +2,6 @@ package word.spring.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 
 @Entity
@@ -25,6 +24,10 @@ public class Word {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wordbook_id")
     private WordBook wordBook;
+
+    @ManyToOne
+    @JoinColumn(name = "test_id")
+    private Test test;
 
     public void setWordBook(WordBook wordBook,String key) {
         this.wordBook = wordBook;

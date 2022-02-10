@@ -31,10 +31,10 @@ public class Test {
     @Enumerated(EnumType.STRING)
     private TestStatus teststatus;
 
-    @OneToMany(mappedBy = "test")
+    @OneToMany(mappedBy = "test",  cascade = CascadeType.ALL)
     private List<Distribute> distributeList = new ArrayList<>(); //배포된 시험에 누가 포함된지 알 수 있음.
 
     @OneToMany(mappedBy ="test")//wordbook 찾아오기  단어장까지만 생각!!  단어 꺼내오는건 논외
-    private List<WordBook> wordBookList = new ArrayList<>();
+    private List<Word> WordList = new ArrayList<>();
 }
 

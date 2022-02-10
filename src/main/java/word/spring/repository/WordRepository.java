@@ -14,7 +14,6 @@ public class WordRepository{
     @PersistenceContext
     EntityManager em;
 
-    @Transactional  //들어가야되나?
     public Long save(Word word) {
         em.persist(word);
         return word.getId();
@@ -23,8 +22,8 @@ public class WordRepository{
         return em.find(Word.class, id);
     }
 
-    public List findByName(String name){ //List<Word>아닌가
-        return em.createQuery("select w from Word w where w.Korean=:name")
+    public List<Word> findByName(String name){ //List<Word>아닌가
+        return em.createQuery("select w from Word w where w.Korean=:name",Word.class)
                 .setParameter("name",name)
                 .getResultList();
     }

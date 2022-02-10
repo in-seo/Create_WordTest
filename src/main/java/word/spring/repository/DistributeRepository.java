@@ -5,30 +5,27 @@ import org.springframework.transaction.annotation.Transactional;
 import word.spring.domain.Distribute;
 import word.spring.domain.Group;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class GroupRepository{
+public class DistributeRepository{
     @PersistenceContext
     EntityManager em;
 
-    @Transactional  //들어가야되나?
-    public Long save(Group group) {
-        em.persist(group);
-        return group.getId();
-    }
-    public Group findById(Long id) {
-        return em.find(Group.class, id);
+    public Long save(Distribute distribute) {
+        em.persist(distribute);
+        return distribute.getId();
     }
 
-
-    public List<Group> findByName(String name){
-        return em.createQuery("select g from Group g where g.name=:name",Group.class)
-                .setParameter("name",name)
+    public List<Distribute> findAll(){
+        return em.createQuery("select d from Distribute d",Distribute.class)
                 .getResultList();
     }
+    public Distribute findById(Long id) {
+        return em.find(Distribute.class, id);
+    }
+
 
 }

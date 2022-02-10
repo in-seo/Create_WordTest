@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class Distribute { //배포
 
     @Id @GeneratedValue
-    @Column(name = "publish_id")
+    @Column(name = "distribute_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,12 +25,12 @@ public class Distribute { //배포
 
     public void setTest(Test test) {
         this.test = test;
-        test.getList().add(this);
+        test.getDistributeList().add(this);
         test.setTeststatus((TestStatus.YET));
     }
 
     public void setStudent(Student student) {
         this.student = student;
-        student.getList().add(this);
+        student.getDistributeList().add(this);
     }
 }

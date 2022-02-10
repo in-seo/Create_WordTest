@@ -14,7 +14,7 @@ public class TestRepository{
     @PersistenceContext
     EntityManager em;
 
-    @Transactional  //들어가야되나?
+
     public Long save(Test test) {
         em.persist(test);
         return test.getId();
@@ -24,7 +24,7 @@ public class TestRepository{
     }
 
     public List<Test> findByName(String name){
-        return em.createQuery("select t from Test t where t.name=:name")
+        return em.createQuery("select t from Test t where t.name=:name",Test.class)
                 .setParameter("name",name)
                 .getResultList();
     }

@@ -1,16 +1,15 @@
 package word.spring.service;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import word.spring.repository.WordRepository;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class wordService {
 
     private final WordRepository wordRepository;
+
 
 
 }
