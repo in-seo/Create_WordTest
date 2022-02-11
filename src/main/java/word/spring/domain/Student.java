@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,13 @@ public class Student {
     public void setGroup(Group group){
         this.group=group;
         group.getList().add(this);
+    }
+
+    public static Student createStudent(String name, Group group){
+        Student student = new Student();
+        student.setName(name);
+        student.setGroup(group);
+        return student;
     }
 
 }

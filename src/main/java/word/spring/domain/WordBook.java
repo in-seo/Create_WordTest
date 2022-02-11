@@ -18,11 +18,17 @@ public class WordBook {
 
     private String name;
 
+    @Transient
+    private Long key;
+
     @OneToMany(mappedBy = "wordBook")
-    private Map<String,Word> map = new HashMap<>(); //나중에 조금 수정  단어들 리스트
+    private Map<Long,Word> map = new HashMap<>(); //나중에 조금 수정  단어들 리스트
 //    private List<Word> list = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "test_id")
-    private Test test;
+
+    public static WordBook createWordBook(String name) { //단어장에 단어 추가
+        WordBook wordBook = new WordBook();
+        wordBook.setName(name); wordBook.setKey(0L);
+        return wordBook;
+    }
 }

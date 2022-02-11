@@ -62,7 +62,7 @@ public class StudentRepositoryTest {
 
         for (int i = 0; i < 100; i++) { //단어 대충 생성
             Word word = new Word("kor"+i,"eng"+i);
-            word.setWordBook(wordBook,Integer.toString(i));
+            word.setWordBook(wordBook,Integer.toUnsignedLong(i));
             wordRepository.save(word);
             test.getWordList().add(word);
         }
@@ -72,17 +72,6 @@ public class StudentRepositoryTest {
             System.out.print(testRepository.findById(save).getWordList().get(j).getKorean());
             System.out.println(testRepository.findById(save).getWordList().get(j).getEnglish());
         }
-    }
-
-    @Test
-    @Transactional
-    @Rollback(false)
-    public void 학생_단어출제() {
-
-
-
-
-
     }
 
 

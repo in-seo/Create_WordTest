@@ -36,5 +36,17 @@ public class Test {
 
     @OneToMany(mappedBy ="test")//wordbook 찾아오기  단어장까지만 생각!!  단어 꺼내오는건 논외
     private List<Word> WordList = new ArrayList<>();
+
+
+    public static Test createTest(String name, Long limit, Long cutLine, Long testTime, List<Word> words){
+        Test test = new Test();
+        test.setStartTime(LocalDateTime.now());
+        test.setName(name); test.setCutLine(cutLine); test.setTestTime(testTime);
+        for (Word word : words) { //wordbook에서 묶어서  list로 뺴오면 될 듯
+            test.getWordList().add(word);
+        }
+        test.setTeststatus(TestStatus.YET);
+        return test;
+    }
 }
 
