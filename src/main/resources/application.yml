@@ -16,6 +16,9 @@ spring:
     ansi:
       enabled: always
 # 파라미터 확인을 위한 trace
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
 logging:
   level:
     org.hibernate.type: trace

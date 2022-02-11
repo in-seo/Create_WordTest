@@ -28,11 +28,10 @@ public class testServiceTest {
     private wordService wordservice;
     @Autowired
     private StudentService studentservice;
-
-    @Autowired
-    private DistributeRepository repo;
-    @Autowired
-    private StudentRepository studentRepository;
+//    @Autowired
+//    private DistributeRepository repo;
+//    @Autowired
+//    private StudentRepository studentRepository;
 
     @Test
     @Transactional
@@ -54,20 +53,20 @@ public class testServiceTest {
         Long studentId = studentservice.join("랄랄루", groupId);
         Long distributeId = testservice.distribute(testId, studentId);
 
-        Distribute dis = repo.findById(distributeId);
-        List<Word> wordList = dis.getTest().getWordList();
-        for (Word word : wordList) {
-            System.out.println(word.getEnglish()+" "+word.getKorean());
-        }
-        Student student = studentRepository.findById(studentId);
-        List<Distribute> distributeList = student.getDistributeList();
-        for (Distribute distribute : distributeList) {
-            System.out.println("N번쨰!!!!!!!!!!!!!!!!!!!!!!!!");
-            for (int i = 0; i <distribute.getTest().getWordList().size() ; i++) {
-                System.out.println(distribute.getTest().getWordList().get(i).getEnglish());
-            }
-
-        }
+//        Distribute dis = repo.findById(distributeId);
+//        List<Word> wordList = dis.getTest().getWordList();
+//        for (Word word : wordList) {
+//            System.out.println(word.getEnglish()+" "+word.getKorean());
+//        }
+//        Student student = studentRepository.findById(studentId);
+//        List<Distribute> distributeList = student.getDistributeList();
+//        for (Distribute distribute : distributeList) {
+//            System.out.println("N번쨰!!!!!!!!!!!!!!!!!!!!!!!!");
+//            for (int i = 0; i <distribute.getTest().getWordList().size() ; i++) {
+//                System.out.println(distribute.getTest().getWordList().get(i).getEnglish());
+//            }
+//
+//        }
 
 
     }
