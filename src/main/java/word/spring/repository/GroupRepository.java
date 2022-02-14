@@ -15,7 +15,6 @@ public class GroupRepository{
     @PersistenceContext
     EntityManager em;
 
-    @Transactional  //들어가야되나?
     public Long save(Group group) {
         em.persist(group);
         return group.getId();
@@ -26,7 +25,7 @@ public class GroupRepository{
 
 
     public List<Group> findByName(String name){
-        return em.createQuery("select g from Group g where g.name=:name",Group.class)
+        return em.createQuery("select g from Group g where g.groupName=:name",Group.class)
                 .setParameter("name",name)
                 .getResultList();
     }

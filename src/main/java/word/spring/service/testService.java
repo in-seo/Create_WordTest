@@ -32,7 +32,7 @@ public class testService {
         return testRepository.save(test);
     }
     @Transactional
-    public Long distribute(Long testId, Long studentId){
+    public Long distribute(Long studentId,Long testId){
         Student student = studentRepository.findById(studentId);
         Test test = testRepository.findById(testId);
         Distribute distribute = Distribute.createDistribute(test,student);

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header">
-    <title>Hello</title>
+    <title>Word-Spring</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
@@ -9,20 +9,20 @@
     <div th:replace="fragments/bodyHeader :: bodyHeader"></div>
     <div class="jumbotron">
         <h1>단어출제 프로젝트</h1>
-        <h3 class="lead">단어 생성</h3>
+        <h3 class="lead"><b>학생관리</b></h3>
         <p>
-            <a class="btn btn-lg btn-secondary" href="/members/new">회원 가입</a>
-            <a class="btn btn-lg btn-secondary" href="/members">회원 목록</a>
+            <a class="btn btn-lg btn-secondary" href="/student/new">학생 회원 가입</a>
+            <a class="btn btn-lg btn-secondary" href="/studentList">학생 목록</a>
         </p>
-        <h3 class="lead">단어 출제</h3>
+        <h3 class="lead"><b>단어 출제</b></h3>
         <p>
-            <a class="btn btn-lg btn-dark" href="/items/new">상품 등록</a>
-            <a class="btn btn-lg btn-dark" href="/items">상품 목록</a>
+            <a class="btn btn-lg btn-dark" href="/items/new">단어 생성</a>
+            <a class="btn btn-lg btn-dark" href="/items">단어 출제</a>
         </p>
-        <h3 class="lead">주문 기능</h3>
+        <h3 class="lead"><b>주문 기능</b></h3>
         <p>
-            <a class="btn btn-lg btn-info" href="/order">상품 주문</a>
-            <a class="btn btn-lg btn-info" href="/orders">주문 내역</a>
+            <a class="btn btn-lg btn-info" href="/distribute">배포</a>
+            <a class="btn btn-lg btn-info" href="/distributions">배포 내역</a>
         </p>
     </div>
     <div th:replace="fragments/footer :: footer" />

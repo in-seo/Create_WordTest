@@ -8,17 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
 @Table(name = "Class")
 public class Group {
     @Id @GeneratedValue
     @Column(name = "group_id")
     private Long id;
 
-    private String name;
+    private String groupName;
 
     @OneToMany(mappedBy = "group")
     private List<Student> list = new ArrayList<>();
 
-
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
 }

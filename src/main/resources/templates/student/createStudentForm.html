@@ -1,0 +1,21 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<style>
+    .fieldError {
+        border-color: #bd2130;
+    }
+</style>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <form action="/student/create" method="post">
+        <label>학생이름<input type="text" name = "studentName"></label><br> <!--씨발 이것때문에 2시간날림-->
+        <label>반<input type="text" name= "groupName"></label>
+        <button type="submit">제출</button>
+    </form>
+    <br/>
+    <div th:replace="fragments/footer :: footer" />
+</div>
+</body>
+</html>

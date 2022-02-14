@@ -16,19 +16,41 @@ public class StudentService { //반설정하는거 만들어야할듯
 
     private final StudentRepository studentRepository;
     private final GroupRepository groupRepository;
-    public Long makeGroup(String groupName){
+    @Transactional
+    public Group makeGroup(String groupName){
         Group group = new Group();
-        group.setName(groupName);
-        return groupRepository.save(group);
+        group.setGroupName(groupName);
+        System.out.println(group.getGroupName()+"!!!!!!!!!!!!");
+        System.out.println(groupName+"!!!!!!!!!!!!");
+        groupRepository.save(group);
+        return group;
     }
     @Transactional
-    public Long join(String studentName, Long groupId){  //로그인 구현 해보기
-        Group group = groupRepository.findById(groupId);
-        Student student = Student.createStudent(studentName,group);
+    public Long join(String studentName, String groupName){  //로그인 구현 해보기
+        Group validGroup = isValidGroup(groupName);
+        System.out.println("group = " + validGroup.getGroupName()+"!!!!!!!!!!!!!!!!!!");
+        System.out.println("group = " + validGroup.getGroupName()+"!!!!!!!!!!!!!!!!!!");
+        validateDuplicateStudent(studentName);
+        Student student = Student.createStudent(studentName,validGroup);
         return studentRepository.save(student);
     }
 
-    public List<Student> findStudents(){
+    private Group isValidGroup(String groupName) {
+        List<Group> groupList = groupRepository.findByName(groupName);
+        if(groupList.isEmpty()){
+            return makeGroup(groupName);
+        }
+        return groupList.get(0);
+    }
+
+    private void validateDuplicateStudent(String studentName) {
+        List<Student> findMembers = studentRepository.findByName(studentName);
+        if(!findMembers.isEmpty()){
+            throw new IllegalStateException("이미 존재하는 회원입니다.");
+        }
+    }
+
+    public List<Student> findAll(){
         return studentRepository.findAll();
     }
 

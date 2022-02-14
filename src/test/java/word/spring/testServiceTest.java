@@ -48,27 +48,11 @@ public class testServiceTest {
     @Transactional
     @Rollback(value = false)
     public void 테스트() {
-        Long groupId = studentservice.makeGroup("ERY");
+        Long studentId = studentservice.join("랄랄루", "ERY");
+        studentservice.join("호롤로","ERS2");
+        studentservice.join("호롤f","ERS2");
         Long testId = testservice.test(1L, 3L, "1번테스트", 10L,50L, 20L);
-        Long studentId = studentservice.join("랄랄루", groupId);
-        Long distributeId = testservice.distribute(testId, studentId);
-
-//        Distribute dis = repo.findById(distributeId);
-//        List<Word> wordList = dis.getTest().getWordList();
-//        for (Word word : wordList) {
-//            System.out.println(word.getEnglish()+" "+word.getKorean());
-//        }
-//        Student student = studentRepository.findById(studentId);
-//        List<Distribute> distributeList = student.getDistributeList();
-//        for (Distribute distribute : distributeList) {
-//            System.out.println("N번쨰!!!!!!!!!!!!!!!!!!!!!!!!");
-//            for (int i = 0; i <distribute.getTest().getWordList().size() ; i++) {
-//                System.out.println(distribute.getTest().getWordList().get(i).getEnglish());
-//            }
-//
-//        }
-
-
+        Long distributeId = testservice.distribute(studentId,testId);
     }
 
 }

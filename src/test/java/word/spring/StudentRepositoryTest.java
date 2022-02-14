@@ -13,8 +13,6 @@ import word.spring.repository.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import java.util.List;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class StudentRepositoryTest {
@@ -40,7 +38,7 @@ public class StudentRepositoryTest {
     public void 그룹생성() {
         for (int i = 0; i < 10; i++) {
             Group group = new Group();
-            group.setName("그룹"+i);
+            group.setGroupName("그룹"+i);
             groupRepository.save(group);
         }
         for (int i = 0; i < 100; i++) {

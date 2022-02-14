@@ -29,11 +29,11 @@ body {
 /* Customize container */
 @media (min-width: 768px) {
     .container {
-        max-width: 730px;
+        max-width: 1080px;
     }
 }
 .container-narrow > hr {
-    margin: 30px 0;
+    margin: 20px 0;
 }
 /* Main marketing message and sign up button */
 .jumbotron {
