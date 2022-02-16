@@ -39,9 +39,9 @@ public class testServiceTest {
     public void 단어() {
         //given
         Long wordBookId = wordservice.MakeWordBook("호롤로");
-        wordservice.MakeWord(wordBookId,"인서","inseo");
-        wordservice.MakeWord(wordBookId,"현우","hyunwoo");
-        wordservice.MakeWord(wordBookId,"민기","mingi");
+        wordservice.MakeWord("인서","inseo",wordBookId);
+        wordservice.MakeWord("현우","hyunwoo",wordBookId);
+        wordservice.MakeWord("민기","mingi",wordBookId);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class testServiceTest {
         studentservice.join("호롤로","ERS2");
         studentservice.join("호롤f","ERS2");
         Long testId = testservice.test(1L, 3L, "1번테스트", 10L,50L, 20L);
-        Long distributeId = testservice.distribute(studentId,testId);
+        Long distributeId = testservice.distribute(Id,testId);
     }
 
 }

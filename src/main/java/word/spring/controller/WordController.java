@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import word.spring.domain.Word;
 import word.spring.dto.QuestionForm;
 import word.spring.dto.WordForm;
+import word.spring.service.testService;
 import word.spring.service.wordService;
 
 import javax.validation.Valid;
@@ -19,6 +20,7 @@ import java.util.List;
 public class WordController {
 
     private final wordService wordService;
+    private final testService testService;
 
     @GetMapping("/words/new")
     public String WordForm(){
@@ -26,12 +28,12 @@ public class WordController {
     }
 
     @PostMapping("/words/new")
-    public String createWord(@Valid WordForm wordForm, BindingResult result){
+    public String createWord(@Valid WordForm form, BindingResult result){
         if(result.hasErrors()){
             return "words/createWordForm";
         }
-        Long wordBookId = wordService.isValidWordBook(wordForm.getWordBook()); //중복 검증 완료
-        wordService.MakeWord(wordForm.getKor(),wordForm.getEng(),wordBookId);
+        Long wordBookId = wordService.isValidWordBook(form.getWordBook()); //중복 검증 완료
+        wordService.MakeWord(form.getKor(),form.getEng(),wordBookId);
         return "redirect:/";
     }
 
@@ -49,11 +51,13 @@ public class WordController {
     }
 
     @PostMapping("/words/question")
-    public String question(@Valid QuestionForm questionForm, BindingResult result){
+    public String question(@Valid QuestionForm form, BindingResult result){
         if(result.hasErrors()){
             return "words/questionForm";
         }
-
+        System.out.println(form.toString());
+        Long validWordBook = wordService.isValidWordBook(form.getWordBook());
+        Long testId = testService.test(validWordBook,form.getTestName(),form.getStart_range(),form.getEnd_range(),form.getCutLine(),form.getTestTime());
 
         return "redirect:/";
     }

@@ -22,9 +22,8 @@ public class Test {
     private LocalDateTime endTime;
 
     private Long cutLine;
-
-    @Column(name = "limit_num")
-    private Long limit;
+//    @Column(name = "limit_num")
+//    private Long limit; //재시험 횟수
 
     private Long testTime;
 
@@ -38,7 +37,7 @@ public class Test {
     private List<Word> WordList = new ArrayList<>();
 
 
-    public static Test createTest(String name, Long limit, Long cutLine, Long testTime, List<Word> words){
+    public static Test createTest(String name, Long cutLine, Long testTime, List<Word> words){
         Test test = new Test();
         test.setStartTime(LocalDateTime.now());
         test.setName(name); test.setCutLine(cutLine); test.setTestTime(testTime);

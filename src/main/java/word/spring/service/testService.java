@@ -22,13 +22,13 @@ public class testService {
     private final StudentRepository studentRepository;
     private final DistributeRepository distributeRepository;
     @Transactional
-    public Long test(Long wordBookId,Long range, String testName, Long limit, Long cutLine, Long testTime){
+    public Long test(Long wordBookId,String testName, Long start_range,Long end_range, Long cutLine, Long testTime){
         WordBook wordbook = wordBookRepository.findById(wordBookId);
         List<Word> words = new ArrayList<>();
-        for (Long i = 1L; i <= range; i++) {
+        for (Long i = start_range; i <= end_range; i++) {
             words.add(wordbook.getMap().get(i));
         }
-        Test test = Test.createTest(testName,limit,cutLine,testTime,words); //form 사용할예정
+        Test test = Test.createTest(testName,cutLine,testTime,words); //form 사용할예정
         return testRepository.save(test);
     }
     @Transactional

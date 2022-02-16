@@ -3,7 +3,7 @@
 <head th:replace="fragments/header :: header" />
 <body>
 <div class="container">
-    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <div th:replace="fragments/bodyHeader :: bodyHeader"></div>
     <form th:action="@{/words/question}" th:object="${QForm}" method="post">
         <div class="form-group">
             <label th:for="wordBook">단어장선택</label>
@@ -11,12 +11,12 @@
         </div>
         <div class="form-group">
             <label th:for="QuestionName">시험 이름</label>
-            <input type="text" th:field="*{questionName}" class="form-control">
+            <input type="text" th:field="*{testName}" class="form-control">
         </div>
         <div class="form-group">
-            <label th:for="range">시작 범위</label>
+            <label th:for="s_range">시작 범위</label>
             <input type="number" th:field="*{start_range}" min="1" placeholder="최소 1">
-            <label th:for="range">끝 범위</label>
+            <label th:for="e_range">끝 범위</label>
             <input type="number" th:field="*{end_range}" max="60" placeholder="최대 100">
         </div>
         <div class="form-group">
@@ -24,10 +24,9 @@
             <input type="text" th:field="*{group}" class="form-control"
                    placeholder="학급 선택">
         </div>
-
         <div class="form-group">
             <label th:for="cutline">커트라인 선택</label>
-            <input type="text" th:field="*{cutLine}" class="form-control"
+            <input type="number" th:field="*{cutLine}" class="form-control"
                    placeholder="컽">
         </div>
         <div class="form-group">
@@ -38,7 +37,7 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     <br/>
-    <div th:replace="fragments/footer :: footer" />
+    <div th:replace="fragments/footer :: footer"></div>
 </div> <!-- /container -->
 </body>
 </html>

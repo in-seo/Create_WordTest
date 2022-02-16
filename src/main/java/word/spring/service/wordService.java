@@ -39,15 +39,8 @@ public class wordService {
     public Long isValidWordBook(String wordBookName) {
         List<WordBook> wordBookList = wordBookRepository.findByName(wordBookName);
         if(wordBookList.isEmpty()){
-            System.out.println("비어 있음!!!!!!!!!!!!!");
             return MakeWordBook(wordBookName);
         }
-        System.out.println("이미 존재함!!!!!!!!!!!!!!!!!!!!!");
         return wordBookList.get(0).getId();
     }
-
-
-
-
-
 }
