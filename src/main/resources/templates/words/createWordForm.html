@@ -9,9 +9,10 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-    <form action="/student/new" method="post">
-        <label>학생이름<input type="text" name = "studentName"></label><br> <!--씨발 이것때문에 2시간날림-->
-        <label>반<input type="text" name= "groupName"></label>
+    <form action="/words/new" method="post">
+        <label>추가할 단어_한글<input type="text" name = "kor"></label><br>
+        <label>추가할 단어_영어<input type="text" name = "eng"></label><br>
+        <label>추가할 단어장<input type="text" name= "wordBook"></label>
         <button type="submit">제출</button>
     </form>
     <br/>

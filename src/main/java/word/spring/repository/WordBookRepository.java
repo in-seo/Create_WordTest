@@ -14,7 +14,7 @@ public class WordBookRepository{
     @PersistenceContext
     EntityManager em;
 
-
+    @Transactional
     public Long save(WordBook wordBook) {
         em.persist(wordBook);
         return wordBook.getId();

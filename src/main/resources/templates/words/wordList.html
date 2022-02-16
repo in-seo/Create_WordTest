@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>번 호</th>
+                <th>한 글</th>
+                <th>영 어</th>
+                <th>속한 단어장</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="word : ${words}">
+                <td th:text="${wordStat.count}"></td>
+                <td th:text="${word.Korean}"></td>
+                <td th:text="${word.English}"></td>
+                <td th:text="${word.wordBook.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>

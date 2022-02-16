@@ -3,9 +3,7 @@ package word.spring.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import word.spring.domain.Distribute;
-import word.spring.domain.Word;
-import word.spring.domain.WordBook;
+import word.spring.domain.*;
 import word.spring.repository.GroupRepository;
 import word.spring.repository.WordBookRepository;
 import word.spring.repository.WordRepository;
@@ -23,21 +21,31 @@ public class wordService {
     @PersistenceContext
     EntityManager em;
     @Transactional
-    public Long MakeWord(Long wordBookId, String Kor, String Eng){
-        Word word = Word.createWord(Kor,Eng,wordBookRepository.findById(wordBookId));
-        return wordRepository.save(word);
-    }
-
-    @Transactional
     public Long MakeWordBook(String name){
         WordBook wordBook = WordBook.createWordBook(name);
         return wordBookRepository.save(wordBook);
+    }
+    @Transactional
+    public Long MakeWord(String kor, String eng,Long wordBookId){
+        Word word = Word.createWord(kor,eng,wordBookRepository.findById(wordBookId));
+        return wordRepository.save(word);
     }
 
     public List<Word> findAll(){
         return em.createQuery("select w from Word w",Word.class)
                 .getResultList();
     }
+
+    public Long isValidWordBook(String wordBookName) {
+        List<WordBook> wordBookList = wordBookRepository.findByName(wordBookName);
+        if(wordBookList.isEmpty()){
+            System.out.println("비어 있음!!!!!!!!!!!!!");
+            return MakeWordBook(wordBookName);
+        }
+        System.out.println("이미 존재함!!!!!!!!!!!!!!!!!!!!!");
+        return wordBookList.get(0).getId();
+    }
+
 
 
 

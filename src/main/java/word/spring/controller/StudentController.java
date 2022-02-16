@@ -24,13 +24,12 @@ public class StudentController {
         return "student/createStudentForm";
     }
 
-    @PostMapping(value = "/student/create")
+    @PostMapping(value = "/student/new")
     public String createStudent(@Valid StudentForm form, BindingResult result){
 
         if(result.hasErrors()){
             return "student/createStudentForm";
         }
-        System.out.println(form.getStudentName()+"++"+form.getGroupName());
         studentService.join(form.getStudentName(),form.getGroupName());
 
         return "redirect:/";

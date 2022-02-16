@@ -34,9 +34,9 @@ public class Word {
         wordBook.getMap().put(key,this);
     }
     //한글,영어, 단어장셋팅
-    public static Word createWord(String kor, String Eng, WordBook wordBook) { //단어장에 단어 추가
-        Word word = new Word(kor,Eng);
-        wordBook.setKey(wordBook.getKey()+1); //단어 번호 하나 올려주기
+    public static Word createWord(String kor, String eng, WordBook wordBook) { //단어장에 단어 추가
+        Word word = new Word(kor,eng);
+        wordBook.setKey(wordBook.getKey()+1L); //단어 번호 하나 올려주기
         word.setWordBook(wordBook,wordBook.getKey());
         return word;
     }

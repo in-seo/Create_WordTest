@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -18,11 +18,10 @@ public class WordBook {
 
     private String name;
 
-    @Transient
     private Long key;
 
     @OneToMany(mappedBy = "wordBook")
-    private Map<Long,Word> map = new HashMap<>(); //나중에 조금 수정  단어들 리스트
+    private Map<Long,Word> map = new LinkedHashMap<>(); //나중에 조금 수정  단어들 리스트
 //    private List<Word> list = new ArrayList<>();
 
 

@@ -20,16 +20,12 @@ public class StudentService { //반설정하는거 만들어야할듯
     public Group makeGroup(String groupName){
         Group group = new Group();
         group.setGroupName(groupName);
-        System.out.println(group.getGroupName()+"!!!!!!!!!!!!");
-        System.out.println(groupName+"!!!!!!!!!!!!");
         groupRepository.save(group);
         return group;
     }
     @Transactional
     public Long join(String studentName, String groupName){  //로그인 구현 해보기
         Group validGroup = isValidGroup(groupName);
-        System.out.println("group = " + validGroup.getGroupName()+"!!!!!!!!!!!!!!!!!!");
-        System.out.println("group = " + validGroup.getGroupName()+"!!!!!!!!!!!!!!!!!!");
         validateDuplicateStudent(studentName);
         Student student = Student.createStudent(studentName,validGroup);
         return studentRepository.save(student);
