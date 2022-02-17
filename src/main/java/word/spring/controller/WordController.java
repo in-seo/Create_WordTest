@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import word.spring.domain.Group;
+import word.spring.domain.Student;
 import word.spring.domain.Word;
 import word.spring.dto.QuestionForm;
 import word.spring.dto.WordForm;
@@ -56,10 +58,18 @@ public class WordController {
             return "words/questionForm";
         }
         System.out.println(form.toString());
-        Long validWordBook = wordService.isValidWordBook(form.getWordBook());
-        Long testId = testService.test(validWordBook,form.getTestName(),form.getStart_range(),form.getEnd_range(),form.getCutLine(),form.getTestTime());
-
+        Long validWordBook = wordService.isValidWordBook(form.getWordBook()); //유효한 단어장인지
+        Long testId = testService.test(validWordBook,form.getTestName(),form.getStart_range(),form.getEnd_range(),form.getCutLine(),form.getTestTime()); //테스트 생성(단어장,범위,컽,시험시간)
+        Group group = testService.findGroup(form.getGroup());
+        List<Student> studentList = group.getStudentList(); //그룹별로 배포하기
+        testService.distribute(testId,studentList);
         return "redirect:/";
     }
+
+//    @GetMapping("/wordBook")
+//    public String showWordBook(Model model) {
+//        wordService.
+//        return "words/wordBook";
+//    }
 
 }

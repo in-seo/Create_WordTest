@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import word.spring.domain.*;
-import word.spring.repository.DistributeRepository;
-import word.spring.repository.StudentRepository;
-import word.spring.repository.TestRepository;
-import word.spring.repository.WordBookRepository;
+import word.spring.repository.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +16,7 @@ public class testService {
 
     private final TestRepository testRepository;
     private final WordBookRepository wordBookRepository;
-    private final StudentRepository studentRepository;
+    private final GroupRepository groupRepository;
     private final DistributeRepository distributeRepository;
     @Transactional
     public Long test(Long wordBookId,String testName, Long start_range,Long end_range, Long cutLine, Long testTime){
@@ -32,10 +29,20 @@ public class testService {
         return testRepository.save(test);
     }
     @Transactional
-    public Long distribute(Long studentId,Long testId){
-        Student student = studentRepository.findById(studentId);
+    public void distribute(Long testId, List<Student> studentList){
         Test test = testRepository.findById(testId);
-        Distribute distribute = Distribute.createDistribute(test,student);
-        return distributeRepository.save(distribute);
+        for (Student student : studentList) {
+            Distribute distribute = Distribute.createDistribute(test,student);
+            distributeRepository.save(distribute);
+            System.out.println(student.getName());
+        }
+    }
+
+    public List<Distribute> findDistributeList(){
+        return distributeRepository.findAll();
+    }
+
+    public Group findGroup(String groupName){
+        return groupRepository.findByName(groupName).get(0);
     }
 }

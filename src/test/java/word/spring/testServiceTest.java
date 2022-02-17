@@ -7,16 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-import word.spring.domain.Distribute;
-import word.spring.domain.Student;
-import word.spring.domain.Word;
-import word.spring.repository.DistributeRepository;
-import word.spring.repository.StudentRepository;
 import word.spring.service.StudentService;
 import word.spring.service.testService;
 import word.spring.service.wordService;
 
-import java.util.List;
 
 
 @RunWith(SpringRunner.class)
@@ -51,8 +45,8 @@ public class testServiceTest {
         Long studentId = studentservice.join("랄랄루", "ERY");
         studentservice.join("호롤로","ERS2");
         studentservice.join("호롤f","ERS2");
-        Long testId = testservice.test(1L, 3L, "1번테스트", 10L,50L, 20L);
-        Long distributeId = testservice.distribute(Id,testId);
+//        Long testId = testservice.test(1L, 3L, "1번테스트", 10L,50L, 20L);
+//        Long distributeId = testservice.distribute(Id,testId);
     }
 
 }

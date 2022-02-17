@@ -18,7 +18,7 @@ public class Group {
     private String groupName;
 
     @OneToMany(mappedBy = "group")
-    private List<Student> list = new ArrayList<>();
+    private List<Student> studentList = new ArrayList<>();
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;

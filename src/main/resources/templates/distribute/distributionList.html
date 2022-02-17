@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#id</th>
+                <th>학 생</th>
+                <th>시 험</th>
+                <th>시 간</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="dist : ${distributions}">
+                <td th:text="${dist.id}"></td>
+                <td th:text="${dist.student.name}"></td>
+                <td th:text="${dist.test.name}"></td>
+                <td th:text="${dist.time}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>

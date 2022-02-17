@@ -43,4 +43,9 @@ public class wordService {
         }
         return wordBookList.get(0).getId();
     }
+
+    public List<Word> WordBook_Word(Long id){
+        return em.createQuery("select w from Word w left join WordBook b on b.id = w.wordBook.id order by w.id ")
+                .getResultList();
+    }
 }
