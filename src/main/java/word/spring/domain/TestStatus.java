@@ -1,5 +1,5 @@
 package word.spring.domain;
 
 public enum TestStatus {
-    PASS,FAIL,YET
+    PASS,FAIL,YET,DISTRIBUTE
 }

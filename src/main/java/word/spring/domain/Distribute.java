@@ -37,7 +37,7 @@ public class Distribute { //배포
 
     public static Distribute createDistribute(Test test, Student student){
         Distribute distribute = new Distribute();
-        distribute.setTest(test);
+        distribute.setTest(test); test.setTeststatus(TestStatus.DISTRIBUTE);
         distribute.setStudent(student);
         distribute.setTime(LocalDateTime.now());
         return distribute;
