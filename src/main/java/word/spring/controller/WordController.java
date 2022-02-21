@@ -24,12 +24,12 @@ public class WordController {
     private final wordService wordService;
     private final testService testService;
 
-    @GetMapping("/words/new")
+    @GetMapping("/words/new") //Get은 조회
     public String WordForm(){
         return "words/createWordForm";
     }
 
-    @PostMapping("/words/new")
+    @PostMapping("/words/new") //Post는 폼 데이터 처리
     public String createWord(@Valid WordForm form, BindingResult result){
         if(result.hasErrors()){
             return "words/createWordForm";
