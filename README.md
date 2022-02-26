@@ -19,7 +19,7 @@
 # <small>학생 리스트(/students/list)</small>
 ![student_list](https://user-images.githubusercontent.com/94730032/154610906-6331bbae-06e8-4f2c-82f4-65911c2e38d1.png)
 # <small>단어 생성 및 등록(/words/new)</small>
->단어장 엔티티의 Map<Word> 구조를 이용해서 1번 키부터 차례로 단어장에 등록하게 한다.
+>단어장 엔티티의 Map<Word> 구조를 이용해서 1번 키부터 차례로 단어장에 등록하게 한다. <small>번호는 서버 </small>
 
 ![second](https://user-images.githubusercontent.com/94730032/154611071-8c85b684-f939-4824-a6b4-9d4216af94cf.jpg)
 # <small>등록된 단어 출제(/distribute) --> 시험 생성</small>
